@@ -10,3 +10,7 @@ Route::get('videos', [VideoController::class, 'index'])->name('videos.index');
 Route::get('videos/create', [VideoController::class, 'create'])->name('videos.create');
 Route::post('videos', [VideoController::class, 'store'])->name('videos.store');
 Route::get('videos/{id}', [VideoController::class, 'show'])->name('videos.show');
+
+Route::resource('buildings', BuildingController::class);
+
+Route::resource('videos', VideoController::class);

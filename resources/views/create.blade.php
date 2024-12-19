@@ -16,7 +16,7 @@
         </div>
     @endif
 
-    <form action="{{ route('videos.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('videos.store') }}" method="POST" enctype="multipart/ofrm-data">
         @csrf
         <label for="title">Judul Video:</label>
         <input type="text" name="title" id="title" required><br><br>
