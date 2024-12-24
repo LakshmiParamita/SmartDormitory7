@@ -1,0 +1,11 @@
+.card .icon i {
+    font-size: 50px;
+    color: red;
+}
+.card {
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: scale(1.05);
+}
