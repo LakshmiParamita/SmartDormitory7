@@ -35,7 +35,7 @@ class WaterController extends Controller
         $validated = $request->validate([
             'kode_sensor' => 'required|unique:waters|max:4',
             'nama_gedung' => 'required',
-            'kualitas_air'=> 'required|in:Bersih,Keruh,Kotor'
+            'kualitas_air'=> 'required'
         ]);
 
         Water::create($validated);
@@ -71,9 +71,9 @@ class WaterController extends Controller
     public function update(UpdateWaterRequest $request, Water $water)
     {
         $validated = $request->validate([
-            'kode_sensor' => 'required|unique:waters,kode_sensor,'.$water->id.'|max:4',
+            'kode_sensor' => 'required|unique:waters|max:4',
             'nama_gedung' => 'required',
-            'kualitas_air'=> 'required|in:Bersih,Keruh,Kotor'
+            'kualitas_air'=> 'required'
         ]);
 
         $water->update($validated);

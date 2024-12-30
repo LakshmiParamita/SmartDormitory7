@@ -23,19 +23,31 @@
             <div class="card bg-white shadow-lg">
                 <div class="card-body">
                     <h3 class="card-title text-black">Lorong Kanan</h3>
-                    <video width="320" height="240" controls class="rounded-lg">
-                        <source src="{{ asset('storage/' . $building->cctv_url_right) }}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    @if($building->cctv_url_right)
+                        <video width="320" height="240" controls class="rounded-lg">
+                            <source src="{{ Storage::url($building->cctv_url_right) }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <!-- Untuk debugging -->
+                        <p class="text-sm text-gray-500 mt-2">Video path: {{ Storage::url($building->cctv_url_right) }}</p>
+                    @else
+                        <p class="text-red-500">Video tidak tersedia</p>
+                    @endif
                 </div>
             </div>
             <div class="card bg-white shadow-lg">
                 <div class="card-body">
                     <h3 class="card-title text-black">Lorong Kiri</h3>
-                    <video width="320" height="240" controls class="rounded-lg">
-                        <source src="{{ asset('storage/' . $building->cctv_url_left) }}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    @if($building->cctv_url_left)
+                        <video width="320" height="240" controls class="rounded-lg">
+                            <source src="{{ Storage::url($building->cctv_url_left) }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <!-- Untuk debugging -->
+                        <p class="text-sm text-gray-500 mt-2">Video path: {{ Storage::url($building->cctv_url_left) }}</p>
+                    @else
+                        <p class="text-red-500">Video tidak tersedia</p>
+                    @endif
                 </div>
             </div>
         </div>

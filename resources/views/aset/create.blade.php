@@ -6,7 +6,7 @@
     <form action="{{ route('asets.store') }}" method="POST">
         @csrf
         
-                <div class="mb-3">
+        <div class="mb-3">
             <label for="nama_aset" class="form-label">Nama Aset</label>
             <select class="form-select @error('nama_aset') is-invalid @enderror" id="nama_aset" name="nama_aset" required>
                 <option value="">Pilih Nama Aset</option>
@@ -37,11 +37,16 @@
 
         <div class="mb-3">
             <label for="satuan" class="form-label">Satuan</label>
-            <input type="text" class="form-control @error('satuan') is-invalid @enderror" id="satuan" name="satuan" value="{{ old('satuan') }}" required>
+            <select class="form-select @error('satuan') is-invalid @enderror" id="satuan" name="satuan" required>
+                <option value="">Pilih Satuan</option>
+                <option value="pcs" {{ old('satuan') == 'pcs' ? 'selected' : '' }}>pcs</option>
+                <option value="set" {{ old('satuan') == 'set' ? 'selected' : '' }}>set</option>
+            </select>
             @error('satuan')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
+
 
         <div class="mb-3">
             <label for="jumlah" class="form-label">Jumlah</label>

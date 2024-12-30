@@ -13,8 +13,6 @@ class Water extends Model
         'kualitas_air'
     ];
 
-    public static $kualitasAirValues = ['Bersih', 'Keruh', 'Kotor'];
-
     public function getKualitasAirAttribute($value)
     {
         return ucfirst(strtolower($value));

@@ -34,10 +34,11 @@
                         </div>
                         <div class="form-group mb-3">
                             <label>Kualitas Air</label>
-                            <select name="kualitas_air" class="form-control">
-                                @foreach(App\Models\Water::$kualitasAirValues as $value)
-                                    <option value="{{ $value }}">{{ $value }}</option>
-                                @endforeach
+                            <select name="kualitas_air" class="form-control" required>
+                                <option value="">Pilih Kualitas Air</option>
+                                <option value="Bersih" {{ old('kualitas_air') == 'Bersih' ? 'selected' : '' }}>Bersih</option>
+                                <option value="Keruh" {{ old('kualitas_air') == 'Keruh' ? 'selected' : '' }}>Keruh</option>
+                                <option value="Kotor" {{ old('kualitas_air') == 'Kotor' ? 'selected' : '' }}>Kotor</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Simpan</button>

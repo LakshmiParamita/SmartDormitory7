@@ -26,7 +26,11 @@
 
         <div class="mb-3">
             <label for="satuan" class="form-label">Satuan</label>
-            <input type="text" class="form-control @error('satuan') is-invalid @enderror" id="satuan" name="satuan" value="{{ old('satuan', $aset->satuan) }}" required>
+            <select class="form-select @error('satuan') is-invalid @enderror" id="satuan" name="satuan" required>
+                <option value="">Pilih Satuan</option>
+                <option value="pcs" {{ old('satuan') == 'pcs' ? 'selected' : '' }}>pcs</option>
+                <option value="set" {{ old('satuan') == 'set' ? 'selected' : '' }}>set</option>
+            </select>
             @error('satuan')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror

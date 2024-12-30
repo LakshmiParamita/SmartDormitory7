@@ -11,4 +11,9 @@ class UserLogin extends Authenticatable
 
     protected $table = 'userlogin';
     protected $fillable = ['username', 'password'];
+
+    public function isStaff()
+    {
+        return $this->role === 'staff';
+    }
 }

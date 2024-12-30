@@ -23,15 +23,6 @@
                     <div class="form-group mb-3">
                         <label>Kualitas Air</label>
                         <p id="kualitasAir">{{ $water->kualitas_air }}</p>
-                        <small class="text-muted">Status: 
-                            @if($water->kualitas_air == 'Bersih')
-                                <span class="text-success">Air Bersih</span>
-                            @elseif($water->kualitas_air == 'Keruh')
-                                <span class="text-warning">Perlu Filter</span>
-                            @elseif($water->kualitas_air == 'Kotor')
-                                <span class="text-danger">Perlu Diganti</span>
-                            @endif
-                        </small>
                     </div>
                     
                     <div id="buttonContainer">

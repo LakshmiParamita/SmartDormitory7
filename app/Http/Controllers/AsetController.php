@@ -4,16 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Aset;  
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AsetController extends Controller
 {
     /**
      * Menampilkan daftar semua aset.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $asets = Aset::all(); // Mengambil semua data aset
-        return view('aset.index', compact('asets')); // Menampilkan view aset.index
+        $query = Aset::query();
+        
+        // Filter berdasarkan nama aset
+        if ($request->has('search')) {
+            $query->where('nama_aset', 'like', '%' . $request->search . '%');
+        }
+        
+        $asets = $query->get();
+        return view('aset.index', compact('asets'));
     }
 
     /**
@@ -91,5 +99,30 @@ class AsetController extends Controller
         $aset->delete();
 
         return redirect()->route('asets.index')->with('success', 'Aset berhasil dihapus.');
+    }
+
+    // Tambahkan method baru untuk generate PDF
+    public function generatePDF(Request $request)
+    {
+        try {
+            $query = Aset::query();
+            
+            if ($request->has('selected_ids')) {
+                $selectedIds = explode(',', $request->selected_ids);
+                $query->whereIn('id', $selectedIds);
+            }
+            
+            $asets = $query->get();
+            
+            if ($asets->isEmpty()) {
+                return back()->with('error', 'Tidak ada data yang dipilih');
+            }
+            
+            $pdf = Pdf::loadView('aset.pdf', compact('asets'));
+            return $pdf->setPaper('a4', 'portrait')
+                      ->download('daftar-aset.pdf');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Terjadi kesalahan saat generate PDF: ' . $e->getMessage());
+        }
     }
 }

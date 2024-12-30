@@ -13,9 +13,9 @@ class UnlockingRecordSeeder extends Seeder
      */
     public function run(): void
     {
+        UnlockingRecord::create(['timestamp' => now(), 'activity' => 'Pintu gagal dibuka.']);
+        UnlockingRecord::create(['timestamp' => now(), 'activity' => 'Pintu gagal dibuka.']);
         UnlockingRecord::create(['timestamp' => now(), 'activity' => 'Pintu berhasil dibuka oleh Arya Anggadipa Manova.']);
-        UnlockingRecord::create(['timestamp' => now(), 'activity' => 'Pintu gagal dibuka.']);
-        UnlockingRecord::create(['timestamp' => now(), 'activity' => 'Pintu gagal dibuka.']);
     }
 }
 

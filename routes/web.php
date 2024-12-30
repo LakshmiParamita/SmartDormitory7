@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserLoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\WaterController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\VideoController;
 use App\Http\Controllers\UnlockingRecordController;
 use App\Http\Controllers\ErrorReportController;
 use App\Http\Controllers\Staff\ErrorReportController as StaffErrorReportController;
+use App\Http\Controllers\StaffErrorController;
 
 // Redirect root URL ke halaman login
 Route::get('/', function () {
@@ -60,6 +62,9 @@ Route::post('/building-lock/{id}/toggle', [BuildingLockController::class, 'toggl
 Route::post('/building-lock/lock-all', [BuildingLockController::class, 'lockAll'])->name('building-lock.lockAll');
 Route::post('/building-lock/unlock-all', [BuildingLockController::class, 'unlockAll'])->name('building-lock.unlockAll');
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('asets/pdf', [AsetController::class, 'generatePDF'])->name('asets.pdf');
+});
 Route::resource('asets', AsetController::class);
 
 // Route::get('/', [BuildingController::class, 'index'])->name('home');
@@ -72,7 +77,6 @@ Route::resource('buildings', BuildingController::class);
 
 Route::resource('videos', VideoController::class);
 
-Route::resource('unlocking-records', UnlockingRecordController::class);
 Route::get('/unlocking-records', [UnlockingRecordController::class, 'index'])->name('unlocking_records.index');
 Route::post('/unlocking-records', [UnlockingRecordController::class, 'store'])->name('unlocking_records.store');
 
@@ -89,14 +93,5 @@ Route::prefix('error-reports')->name('error_reports.')->group(function () {
     Route::delete('/{buildingName}/{id}', [ErrorReportController::class, 'destroy'])->name('destroy');
 });
 
-// Routes untuk staff
-Route::middleware(['auth', 'staff'])->group(function () {
-    Route::get('/staff/error-reports', function () {
-        return redirect()->route('staff.error-reports.show', 'default-building');
-    })->name('staff.error-reports.index');
-    
-    Route::get('/staff/error-reports/{buildingName}', [StaffErrorReportController::class, 'show'])
-        ->name('staff.error-reports.show');
-    Route::patch('/staff/error-reports/{errorReport}/update-status', [StaffErrorReportController::class, 'updateStatus'])
-        ->name('staff.error-reports.update-status');
-});
+Route::get('/staff/error/{buildingName}', [StaffErrorController::class, 'show'])->name('staff.error');
+Route::post('/staff/error/update-status/{id}', [StaffErrorController::class, 'updateStatus'])->name('staff.error.update-status');

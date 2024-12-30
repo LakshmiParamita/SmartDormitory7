@@ -68,7 +68,7 @@ a:hover, a:active {
             </div>
             <div class="feature">
                 <img class="icon" src="images/error.png" />
-                <a href="{{ route('staff.error-reports.show', 'default-building') }}" class="feature-title">Laporan Error</a>
+                <a href="{{ route('staff.error', 'default-building') }}" class="feature-title">Laporan Error</a>
             </div>
         </div>
     </div>

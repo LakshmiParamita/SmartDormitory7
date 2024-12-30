@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +26,16 @@
         .container {
             position: relative;
             width: 100%;
+        }
+        .header-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .info-text {
+            font-size: 14px;
+            font-weight: bold;
         }
         .button-container {
             position: relative;
@@ -83,9 +96,12 @@
     </style>
 </head>
 <body>
-    <h1>Unlocking Records</h1>
+    <h3>Unlocking Records</h3>
     
     <div class="container">
+        <div class="header-info">
+            <h4 class="info-text">Gedung: 6 Kamar: 216</h4>
+        </div>
         <table>
             <thead>
                 <tr>
@@ -143,3 +159,4 @@
     </script>
 </body>
 </html>
+@endsection

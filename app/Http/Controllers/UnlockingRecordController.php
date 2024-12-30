@@ -21,4 +21,14 @@ class UnlockingRecordController extends Controller
 
         return redirect()->route('unlocking_records.index');
     }
+
+    public function index()
+    {
+        // Ambil semua data dari model UnlockingRecord
+        $records = UnlockingRecord::all();
+
+        // Kirim data ke view untuk ditampilkan
+        return view('unlocking_records.index', compact('records'));
+    }
+
 }

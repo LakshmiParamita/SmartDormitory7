@@ -4,16 +4,15 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class StaffMiddleware
 {
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->usertype === 'staff') {
+        if (auth()->check() && auth()->user()->role === 'staff') {
             return $next($request);
         }
 
-        return redirect('/')->with('error', 'Akses tidak diizinkan');
+        return redirect('home')->with('error', 'You do not have staff access.');
     }
-} 
+}
