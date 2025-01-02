@@ -22,7 +22,52 @@
                     </div>
                     <div class="form-group mb-3">
                         <label>Kualitas Air</label>
-                        <p id="kualitasAir">{{ $water->kualitas_air }}</p>
+                        <p>
+                            <span id="kualitasAir" class="badge bg-{{ $water->kualitas_air == 'Bersih' ? 'success' : ($water->kualitas_air == 'Keruh' ? 'warning' : 'danger') }}">
+                                {{ $water->kualitas_air }}
+                            </span>
+                        </p>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                        <label>Status</label>
+                        <p id="statusContainer">
+                            @if($water->status_kebocoran)
+                                <span class="badge bg-danger">Terdeteksi Kebocoran</span>
+                                @if(!$water->status_penanganan)
+                                    <button class="btn btn-warning btn-sm ms-1 panggil-teknisi" 
+                                            data-id="{{ $water->id }}"
+                                            data-gedung="{{ $water->nama_gedung }}">
+                                        Panggil Teknisi
+                                    </button>
+                                @else
+                                    <span class="badge bg-info">Dalam Penanganan</span>
+                                    <button class="btn btn-success btn-sm ms-1 selesai-penanganan" 
+                                            data-id="{{ $water->id }}"
+                                            data-gedung="{{ $water->nama_gedung }}">
+                                        Selesai Penanganan
+                                    </button>
+                                @endif
+                            @elseif($water->tekanan_air < \App\Models\Water::BATAS_MIN_TEKANAN)
+                                <span class="badge bg-warning">Tekanan Rendah</span>
+                                @if(!$water->status_cek_pompa)
+                                    <button class="btn btn-info btn-sm ms-1 cek-pompa" 
+                                            data-id="{{ $water->id }}"
+                                            data-gedung="{{ $water->nama_gedung }}">
+                                        Cek Pompa Air
+                                    </button>
+                                @else
+                                    <span class="badge bg-info">Pompa Dalam Pengecekan</span>
+                                    <button class="btn btn-success btn-sm ms-1 selesai-cek-pompa" 
+                                            data-id="{{ $water->id }}"
+                                            data-gedung="{{ $water->nama_gedung }}">
+                                        Selesai Cek Pompa
+                                    </button>
+                                @endif
+                            @else
+                                <span class="badge bg-success">Normal</span>
+                            @endif
+                        </p>
                     </div>
                     
                     <div id="buttonContainer">
@@ -55,7 +100,9 @@ function buangAir(id) {
     .then(data => {
         if(data.success) {
             document.getElementById('kualitasAir').textContent = data.kualitas_air;
+            document.getElementById('kualitasAir').className = 'badge bg-success';
             document.getElementById('buttonContainer').innerHTML = '';
+            document.getElementById('statusContainer').innerHTML = '<span class="badge bg-success">Normal</span>';
             alert(data.message);
         }
     })
@@ -75,7 +122,9 @@ function filterAir(id) {
     .then(data => {
         if(data.success) {
             document.getElementById('kualitasAir').textContent = data.kualitas_air;
+            document.getElementById('kualitasAir').className = 'badge bg-success';
             document.getElementById('buttonContainer').innerHTML = '';
+            document.getElementById('statusContainer').innerHTML = '<span class="badge bg-success">Normal</span>';
             alert(data.message);
         }
     })

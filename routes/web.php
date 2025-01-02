@@ -43,6 +43,10 @@ Route::put('/water/{water}', [WaterController::class, 'update'])->name('water.up
 Route::delete('/water/{water}', [WaterController::class, 'destroy'])->name('water.destroy');
 Route::put('/water/{id}/buang', [WaterController::class, 'buangAir'])->name('water.buang');
 Route::put('/water/{id}/filter', [WaterController::class, 'filterAir'])->name('water.filter');
+Route::post('/water/{id}/panggil-teknisi', [WaterController::class, 'panggilTeknisi'])->name('water.panggil-teknisi');
+Route::post('/water/{id}/selesai-penanganan', [WaterController::class, 'selesaiPenanganan'])->name('water.selesai-penanganan');
+Route::post('/water/{id}/cek-pompa', [WaterController::class, 'cekPompa'])->name('water.cek-pompa');
+Route::post('/water/{id}/selesai-cek-pompa', [WaterController::class, 'selesaiCekPompa'])->name('water.selesai-cek-pompa');
 
 Route::get('gedungs/{id}', [GedungController::class, 'show'])->name('gedungs.show');
 Route::post('lamps/{id}/toggle', [GedungController::class, 'toggleLamp'])->name('lamps.toggle');

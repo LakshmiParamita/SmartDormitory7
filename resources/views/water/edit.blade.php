@@ -35,12 +35,18 @@
                         </div>
                         <div class="form-group mb-3">
                             <label>Kualitas Air</label>
-                            <select name="kualitas_air" class="form-control" required>
-                                <option value="">Pilih Kualitas Air</option>
-                                <option value="Bersih" {{ old('kualitas_air') == 'Bersih' ? 'selected' : '' }}>Bersih</option>
-                                <option value="Keruh" {{ old('kualitas_air') == 'Keruh' ? 'selected' : '' }}>Keruh</option>
-                                <option value="Kotor" {{ old('kualitas_air') == 'Kotor' ? 'selected' : '' }}>Kotor</option>
+                            <select name="kualitas_air" class="form-control">
+                                @foreach(App\Models\Water::$kualitasAirValues as $value)
+                                    <option value="{{ $value }}" {{ $water->kualitas_air == $value ? 'selected' : '' }}>
+                                        {{ $value }}
+                                    </option>
+                                @endforeach
                             </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Tekanan Air (bar)</label>
+                            <input type="number" name="tekanan_air" class="form-control" value="{{ old('tekanan_air', $water->tekanan_air) }}" required step="0.01">
+                            <small class="text-muted">Nilai normal: 3-6 bar</small>
                         </div>
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>

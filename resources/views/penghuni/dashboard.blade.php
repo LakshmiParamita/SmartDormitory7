@@ -44,11 +44,11 @@ a:hover, a:active {
 @section('content')
 <div class="container">
     <div class="homescreen">
-        <h3>Hai {{ $user->name }}, bagaimana kabarmu hari ini?</h3>
+        <h3>Hai {{ $user->username }}, bagaimana kabarmu hari ini?</h3>
         <div class="features">
             <div class="feature">
-                <img class="icon" src="images/lock.png" />
-                <a href="{{ route('unlocking_records.index') }}" class="feature-title">Smart Lock</a>
+                <img class="icon" src="images/door.png" />
+                <a href="{{ route('unlocking_records.index') }}" class="feature-title">Smart Door</a>
             </div>
             <div class="feature">
                 <img class="icon" src="images/error.png" />
