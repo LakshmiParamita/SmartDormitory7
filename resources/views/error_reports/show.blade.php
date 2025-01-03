@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Laporkan Error')
+
 @section('content')
 <!DOCTYPE html>
 <html lang="en">
@@ -65,14 +67,14 @@
     </style>
 </head>
 <body>
-    <h3>Laporan Error</h3>
     @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
     @endif
-
+    
     <div class="container">
+        <h3><b>Laporkan Error</b></h3>
         <table>
             <thead>
                 <tr>

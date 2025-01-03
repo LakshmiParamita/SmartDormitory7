@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Laporkan Error')
+
 @section('content')
 <!DOCTYPE html>
 <html lang="en">

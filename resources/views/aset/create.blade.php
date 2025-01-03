@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Aset Gedung')
+
 @section('content')
 <div class="container mt-5">
     <h2>Tambah Aset</h2>

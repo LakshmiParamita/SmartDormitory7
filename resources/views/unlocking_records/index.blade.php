@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
+@section('title', 'Smart Door')
+
 @section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unlocking Records</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
@@ -30,12 +31,11 @@
         .header-info {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
+            align-items: right;
+            margin-bottom: 10px;
         }
         .info-text {
-            font-size: 14px;
-            font-weight: bold;
+            font-size: 16px;
         }
         .button-container {
             position: relative;
@@ -96,9 +96,9 @@
     </style>
 </head>
 <body>
-    <h3>Unlocking Records</h3>
     
     <div class="container">
+        <h3><b>Unlocking Records</b></h3>
         <div class="header-info">
             <h4 class="info-text">Gedung: 6 Kamar: 216</h4>
         </div>

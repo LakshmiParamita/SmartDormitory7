@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Monitoring Air')
+
 @section('content')
 <div class="container">
     <div class="row">

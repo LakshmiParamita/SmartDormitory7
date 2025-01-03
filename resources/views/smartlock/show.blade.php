@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Smart Lock')
+
 @section('content')
 <style>
     .lock-toggle-btn {

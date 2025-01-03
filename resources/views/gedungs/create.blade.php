@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Smart Lighting')
+
 @section('content')
 <div class="container">
     <h1>Tambah Gedung</h1>

@@ -1,16 +1,18 @@
 @extends('layouts.app')
 
+@section('title', 'Laporan Error')
+
 @section('content')
 <div class="container">
-    <h3>Daftar Laporan Error</h3>
     
     @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
     @endif
-
+    
     <div class="container">
+        <h3><b>Daftar Laporan Error</b></h3>
         <table class="table">
             <thead>
                 <tr>

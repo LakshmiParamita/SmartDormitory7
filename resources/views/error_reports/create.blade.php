@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
+@section('title', 'Laporkan Error')
+
 @section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Laporan Error</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -77,9 +78,9 @@
     </style>
 </head>
 <body>
-    <h3>Tambah Laporan Error</h3>
-
+    
     <div class="container">
+        <h3><center><b>Tambah Laporan Error</b></center></h3>
         @if ($errors->any())
             <div style="color: red; margin-bottom: 15px;">
                 <ul>

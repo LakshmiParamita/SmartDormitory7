@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Monitoring Air')
+
 @php
     use App\Models\Water;
 @endphp

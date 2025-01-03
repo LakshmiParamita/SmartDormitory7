@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Smart Lighting')
+
 @section('content')
 <!DOCTYPE html>
 <html lang="en">

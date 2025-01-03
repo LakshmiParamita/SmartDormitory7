@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Smart Lighting')
+
 @section('content')
 <div class="container">
     <div class="mb-3">
